@@ -1,37 +1,42 @@
-app.controller('fic-controller', ['$scope', 'fic-settings', 'fic-model',
-    function ($scope, ficSettings, FICModel) {
+app.controller('fic-controller', ['$scope', 'fic-settings', 'userservice', 'fic-model',
+    function ($scope, ficSettings, userservice, FICModel) {
         'use strict';
 
-        $scope.calculate = function () {
-            if ($scope.ficForm.$valid) {
-                $scope.FIC = new FICModel($scope.settings, 25);
-                $scope.FIC.calculate();
-
-                ficSettings.setSettings($scope.settings);
-            }
-        };
-        
         $scope.settings = {};
 
-        ficSettings.getSettings().then(function (settings) {
-            if (settings) {
-                angular.extend($scope.settings, settings);
-            } else {
-                $scope.settings.age = 28;
+        loadSettings();
 
-                $scope.settings.networth = 100000;
+        $scope.login = function () {
+            userservice.login().then(loadSettings);
+        };
 
-                $scope.settings.savings = 2000;
+        $scope.logout = function () {
+            userservice.logout().then(loadSettings);
+        };
 
-                $scope.settings.withdrawal_rate = 4;
+        $scope.calculate = function (force) {
+            if ($scope.ficForm.$valid || force) {
+                userservice.getUserId().then(function (userId) {
+                    $scope.FIC = new FICModel($scope.settings, 25);
+                    $scope.FIC.calculate();
 
-                $scope.settings.goal = 50000;
-
-                $scope.settings.inflation = 3;
-
-                $scope.settings.ror = 8;
+                    ficSettings.setSettings(userId, $scope.settings);
+                });
             }
-            
-            $scope.calculate();
-        });
+        };
+
+        function loadSettings() {
+            userservice.getUserId()
+                .then(function (userId) {
+                    $scope.currentUserId = userId;
+                    return ficSettings.getSettings(userId);
+                })
+                .then(function (settings) {
+                    if (settings) {
+                        angular.extend($scope.settings, settings);
+                    }
+                
+                    $scope.calculate(true);
+                });
+        }
 }]);
