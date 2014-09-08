@@ -3,31 +3,35 @@ app.controller('fic-controller', ['$scope', 'fic-settings', 'fic-model',
         'use strict';
 
         $scope.calculate = function () {
-            if ($scope.ficSettings.$valid) {
-                $scope.FIC = new FICModel($scope, 25);
+            if ($scope.ficForm.$valid) {
+                $scope.FIC = new FICModel($scope.settings, 25);
                 $scope.FIC.calculate();
 
-                ficSettings.setSettings($scope);
+                ficSettings.setSettings($scope.settings);
             }
         };
+        
+        $scope.settings = {};
 
         ficSettings.getSettings().then(function (settings) {
             if (settings) {
-                angular.extend($scope, settings);
+                angular.extend($scope.settings, settings);
             } else {
-                $scope.age = 28;
+                $scope.settings.age = 28;
 
-                $scope.networth = 250000;
+                $scope.settings.networth = 100000;
 
-                $scope.savings = 5000;
+                $scope.settings.savings = 2000;
 
-                $scope.withdrawal_rate = 4;
+                $scope.settings.withdrawal_rate = 4;
 
-                $scope.goal = 50000;
+                $scope.settings.goal = 50000;
 
-                $scope.inflation = 3;
+                $scope.settings.inflation = 3;
 
-                $scope.ror = 8;
+                $scope.settings.ror = 8;
             }
-        })
+            
+            $scope.calculate();
+        });
 }]);

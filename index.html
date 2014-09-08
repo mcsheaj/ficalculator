@@ -8,14 +8,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <style>
         body {
             padding-top: 50px;
             padding-bottom: 20px;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -48,77 +48,82 @@
     <div class="container-fluid" data-ng-controller="fic-controller">
         <!-- Example row of columns -->
         <div class="row">
-            <form name="ficSettings" class="control-label col-lg-4 form-horizontal" role="form" data-ng-submit="calculate()">
+            <form name="ficForm" class="control-label col-lg-4 form-horizontal" role="form" data-ng-submit="calculate()">
 
                 <h3>Current state</h3>
                 <hr />
 
-                <div class="form-group">
+                <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.age.$valid, 'has-error': ficForm.age.$invalid}">
                     <label class="control-label col-lg-4">Age</label>
                     <div class="col-lg-4">
-                        <input type="number" data-ng-model="age" min="0" max="120" step="1" required="true" class="form-control" />
+                        <input type="number" name="age" autofocus="" data-ng-model="settings.age" data-ng-change="calculate()" min="0" max="120" step="1" required="true" class="form-control" />
+                        <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.age.$valid, 'glyphicon-warning-sign': ficForm.age.$invalid}"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback"  data-ng-class="{'has-success': ficForm.networth.$valid, 'has-error': ficForm.networth.$invalid}">
                     <label class="control-label col-lg-4">Current net worth</label>
                     <div class="col-lg-8">
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" data-ng-model="networth" min="0" step="1" required="true" class="form-control" />
+                            <input type="number" name="networth" data-ng-model="settings.networth" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                         </div>
+                        <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.networth.$valid, 'glyphicon-warning-sign': ficForm.networth.$invalid}"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback"  data-ng-class="{'has-success': ficForm.savings.$valid, 'has-error': ficForm.savings.$invalid}">
                     <label class="control-label col-lg-4">Savings per month</label>
                     <div class="col-lg-8">
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" data-ng-model="savings" min="0" step="1" required="true" class="form-control" />
+                            <input type="number" name="savings" data-ng-model="settings.savings" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                         </div>
+                        <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.savings.$valid, 'glyphicon-warning-sign': ficForm.savings.$invalid}"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback"  data-ng-class="{'has-success': ficForm.withdrawal.$valid, 'has-error': ficForm.withdrawal.$invalid}">
                     <label class="control-label col-lg-4">Withdrawal</label>
                     <div class="col-lg-4">
                         <div class="input-group">
-                            <input type="number" data-ng-model="withdrawal_rate" min="0" max="100" step="0.01" required="true" class="form-control" />
+                            <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
                             <span class="input-group-addon">%</span>
                         </div>
+                        <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.withdrawal.$valid, 'glyphicon-warning-sign': ficForm.withdrawal.$invalid}"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback"  data-ng-class="{'has-success': ficForm.goal.$valid, 'has-error': ficForm.goal.$invalid}">
                     <label class="control-label col-lg-4">Goal</label>
                     <div class="col-lg-8">
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" data-ng-model="goal" min="0" step="1" required="true" class="form-control" />
+                            <input type="number" name="goal" data-ng-model="settings.goal" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                         </div>
+                        <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.goal.$valid, 'glyphicon-warning-sign': ficForm.goal.$invalid}"></span>
                     </div>
                 </div>
 
                 <h3>Predictions</h3>
                 <hr />
-                
-                <div class="form-group">
+
+                <div class="form-group has-feedback"  data-ng-class="{'has-success': ficForm.inflation.$valid, 'has-error': ficForm.inflation.$invalid}">
                     <label class="control-label col-lg-4">Inflation</label>
                     <div class="col-lg-4">
                         <div class="input-group">
-                            <input type="number" data-ng-model="inflation" min="0" max="100" step="1" required="true" class="form-control" />
+                            <input type="number" name="inflation" data-ng-model="settings.inflation" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
                             <span class="input-group-addon">%</span>
                         </div>
+                        <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.inflation.$valid, 'glyphicon-warning-sign': ficForm.inflation.$invalid}"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback"  data-ng-class="{'has-success': ficForm.ror.$valid, 'has-error': ficForm.ror.$invalid}">
                     <label class="control-label col-lg-4">ROR</label>
                     <div class="col-lg-4">
                         <div class="input-group">
-                            <input type="number" data-ng-model="ror" min="0" max="100" step="1" required="true" class="form-control" />
+                            <input type="number" name="ror" data-ng-model="settings.ror" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
                             <span class="input-group-addon">%</span>
                         </div>
+                        <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.ror.$valid, 'glyphicon-warning-sign': ficForm.ror.$invalid}"></span>
                     </div>
                 </div>
-                
-                <input type="submit" value="Calculate" class="btn btn-primary" ng-disabled="ficSettings.$invalid" />
             </form>
             <div class="col-lg-8">
                 <table class="table">
@@ -173,7 +178,7 @@
     <!-- /container -->
     <script src="js/vendor/jquery-1.11.0.js"></script>
     <script src="js/vendor/angular/angular.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap/bootstrap.jsb"></script>
 
     <script src="js/main.js"></script>
     <script src="js/model/fic-periods.js"></script>
