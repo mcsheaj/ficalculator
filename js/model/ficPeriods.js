@@ -1,4 +1,4 @@
-models.factory('fic-model', [
+models.factory('ficPeriods', [
 
     function () {
         'use strict';

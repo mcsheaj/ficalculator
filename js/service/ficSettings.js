@@ -1,4 +1,4 @@
-app.factory('fic-settings', ['$q', 'userservice',
+app.factory('ficSettings', ['$q', 'ficUserService',
     function ($q, userservice) {
         'use strict';
 
@@ -12,7 +12,7 @@ app.factory('fic-settings', ['$q', 'userservice',
             'ror': 8,
         };
 
-        var SettingsService = function () {            
+        var SettingsService = function () {
             userservice.init();
         };
 
