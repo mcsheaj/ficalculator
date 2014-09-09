@@ -14,16 +14,27 @@ app.controller('fic-controller', ['$scope', 'fic-settings', 'userservice', 'fic-
             userservice.logout().then(loadSettings);
         };
 
-        $scope.calculate = function (force) {
-            if ($scope.ficForm.$valid || force) {
-                userservice.getUserId().then(function (userId) {
-                    $scope.FIC = new FICModel($scope.settings, 25);
-                    $scope.FIC.calculate();
+        $scope.toggleHelp = function (event) {
+            var name = event.currentTarget.attributes.getNamedItem("name").value;
+            $('.help-context[data-for="' + name + '"]').toggle(event.type === 'focus');
+        };
 
+        $scope.calculate = function () {
+            if ($scope.ficForm.$valid) {
+                calculate().then(function (userId) {
                     ficSettings.setSettings(userId, $scope.settings);
                 });
             }
         };
+
+        function calculate() {
+            return userservice.getUserId().then(function (userId) {
+                $scope.FIC = new FICModel($scope.settings, 25);
+                $scope.FIC.calculate();
+
+                return userId;
+            });
+        }
 
         function loadSettings() {
             userservice.getUserId()
@@ -35,8 +46,8 @@ app.controller('fic-controller', ['$scope', 'fic-settings', 'userservice', 'fic-
                     if (settings) {
                         angular.extend($scope.settings, settings);
                     }
-                
-                    $scope.calculate(true);
+
+                    calculate();
                 });
         }
 }]);

@@ -2,21 +2,13 @@
    Author's custom styles
    ========================================================================== */
 
- .has-addon, .form-horizontal .has-feedback .form-control-feedback.has-addon {
-     right: 52px;
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.has-addon,
+.form-horizontal .has-feedback .form-control-feedback.has-addon {
+    right: 52px;
+}
+.help-context {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    opacity: 0.8;
+}

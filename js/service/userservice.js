@@ -9,7 +9,7 @@ app.factory('userservice', ['$q',
                 if (!isInit) {
                     isInit = true;
                     FB.init({
-                        appId: '322176421295729',
+                        appId: getAppId(),
                         cookie: true, // enable cookies to allow the server to access 
                         // the session
                         xfbml: true, // parse social plugins on this page
@@ -36,13 +36,12 @@ app.factory('userservice', ['$q',
                 FB.getLoginStatus(function (response) {
                     if (response.status !== 'connected') {
                         FB.login(function (response) {
-                            defer.resolve();
+                            defer.resolve(response);
                         }, {
                             scope: 'public_profile,email'
                         });
                     } else {
-                        userId = response.authResponse.userID;
-                        defer.resolve();
+                        defer.resolve(response);
                     }
                 });
 
@@ -52,10 +51,14 @@ app.factory('userservice', ['$q',
             logout: function () {
                 var deferred = $q.defer();
                 FB.logout(function (response) {
-                    deferred.resolve();
+                    deferred.resolve(response);
                 });
 
                 return deferred.promise;
             }
         };
+        
+        function getAppId(){
+            return location.host === 'localhost' ? "322187807961257" : "322176421295729";
+        }
 }]);

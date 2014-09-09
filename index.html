@@ -58,9 +58,12 @@
                     <div class="col-lg-8">
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" name="networth" data-ng-model="settings.networth" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                            <input type="number" name="networth" data-ng-model="settings.networth" data-ng-focus="toggleHelp($event)" data-ng-blur="toggleHelp($event)" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                         </div>
                         <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.networth.$valid, 'glyphicon-warning-sign': ficForm.networth.$invalid}"></span>
+                        <div class="well help-context" data-for="networth">
+                            This is the total amount of money you'd have if you were to liquidate all your assets today.
+                        </div>
                     </div>
                 </div>
                 <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.savings.$valid, 'has-error': ficForm.savings.$invalid}">
@@ -77,10 +80,13 @@
                     <label class="control-label col-lg-4">Withdrawal</label>
                     <div class="col-lg-5">
                         <div class="input-group">
-                            <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
+                            <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-focus="toggleHelp($event)" data-ng-blur="toggleHelp($event)" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
                             <span class="input-group-addon">%</span>
                         </div>
                         <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.withdrawal.$valid, 'glyphicon-warning-sign': ficForm.withdrawal.$invalid}"></span>
+                        <div class="well help-context" data-for="withdrawal">
+                            The % of your portfolio you'll be using to pay for your expenses every year.
+                        </div>
                     </div>
                 </div>
                 <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.goal.$valid, 'has-error': ficForm.goal.$invalid}">
@@ -88,9 +94,12 @@
                     <div class="col-lg-8">
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" name="goal" data-ng-model="settings.goal" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                            <input type="number" name="goal" data-ng-model="settings.goal" data-ng-focus="toggleHelp($event)" data-ng-blur="toggleHelp($event)" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                         </div>
                         <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.goal.$valid, 'glyphicon-warning-sign': ficForm.goal.$invalid}"></span>
+                        <div class="well help-context" data-for="goal">
+                            The amount of money you need to pay for your expenses at retirement in today's dollars.
+                        </div>
                     </div>
                 </div>
 
