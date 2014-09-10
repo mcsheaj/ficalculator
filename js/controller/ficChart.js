@@ -1,8 +1,11 @@
 app.controller('ficChart', ['$scope', 'ficService', 'ficChartService',
     function ($scope, ficService, ficChartService) {
+        'use strict';
 
 		var ctx = $("#fichart").get(0).getContext("2d");
 		var fiChart = new Chart(ctx);
+
+        Chart.defaults.global.responsive = true;
 
 		$scope.plot = function (ficData) {
 			var chartData = ficChartService.toChartModel(ficData);
