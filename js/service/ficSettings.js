@@ -1,5 +1,5 @@
-app.factory('ficSettings', ['$q', 'ficUserService',
-    function ($q, userservice) {
+app.factory('ficSettings', ['$q',
+    function ($q) {
         'use strict';
 
         var defaults = {
@@ -12,32 +12,49 @@ app.factory('ficSettings', ['$q', 'ficUserService',
             'ror': 8,
         };
 
-        var SettingsService = function () {
-            userservice.init();
+        var FIData = Parse.Object.extend("FIData");
+
+        var SettingsService = {
+
+            getSettings: function (userId) {
+                var query,
+                    deferred = $q.defer(),
+                    settings;
+
+                if (userId === 'anonymous') {
+                    settings = JSON.parse(localStorage.getItem('fic-settings')) || {};
+                    deferred.resolve(settings[userId] || defaults);
+                } else {
+                    query = new Parse.Query(FIData);
+                    query.get(userId).then(function (current_settings) {
+                        deferred.resolve(current_settings || defaults);
+                    }, function () {
+                        deferred.resolve(defaults);
+                    });
+                }
+
+                return deferred.promise;
+            },
+
+            setSettings: function (userId, settings) {
+                var deferred = $q.defer();
+
+                if (userId === 'anonymous') {
+                    var current_settings = JSON.parse(localStorage.getItem('fic-settings')) || {};
+                    current_settings[userId] = settings;
+                    localStorage.setItem('fic-settings', JSON.stringify(current_settings));
+                    deferred.resolve();
+
+                    return deferred.promise;
+                } else {
+                    return SettingsService.getSettings(userId).then(function (current_settings) {
+                        return current_settings.save(settings);
+                    });
+                }
+            },
         };
 
-        SettingsService.prototype.getSettings = function (userId) {
-            var deferred = $q.defer(),
-                settings = JSON.parse(localStorage.getItem('fic-settings')) || {};
 
-            if (userId) {
-                deferred.resolve(settings[userId] || defaults);
-            } else {
-                deferred.resolve(settings || {});
-            }
 
-            return deferred.promise;
-
-        };
-
-        SettingsService.prototype.setSettings = function (userId, settings) {
-            var promise = this.getSettings();
-
-            promise.then(function (current_settings) {
-                current_settings[userId] = settings;
-                localStorage.setItem('fic-settings', JSON.stringify(current_settings));
-            });
-        };
-
-        return new SettingsService();
+        return SettingsService;
 }]);
