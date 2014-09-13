@@ -12,3 +12,29 @@
     z-index: 3;
     opacity: 0.8;
 }
+@media(max-width: 1200px) {
+    .fic-perspective {} .fic-page {
+/*
+        position: absolute;
+        visibility: hidden;
+        width: 100%;
+        margin: 0;
+        left: -500px;
+*/
+    }
+    .fic-page-current {
+        visibility: visible;
+        left: 0;
+    }
+    /* scale and fade */
+    .fic-page-transition-out {
+        transition-property: left;
+        transition-duration: 0.5s;
+        left: -500px;
+    }
+    .fic-page-transition-in {
+        transition-property: left;
+        transition-duration: 0.5s;
+        left: 0;
+    }
+}

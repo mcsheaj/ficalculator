@@ -1,4 +1,4 @@
-app.factory('ficChartService', [
+services.factory('ficChartService', [
 
     function () {
 		'use strict';

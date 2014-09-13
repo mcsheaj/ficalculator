@@ -27,6 +27,14 @@ app.controller('ficController', ['$scope', 'ficService', 'ficSettings', 'ficUser
             }
         };
 
+        $scope.transition = function(page){
+            var $current = $('.fic-page-current'),
+                $new_page = $('.fic-page-' + page);
+
+            $current.removeClass('fic-page-current fic-page-transition-in').addClass('fic-page-transition-out');
+            $new_page.removeClass('fic-page-transition-out').addClass('fic-page-current fic-page-transition-in');
+        };
+
         function calculate() {
             ficService.calculate($scope.settings);
             $scope.FIC = ficService.FIC;

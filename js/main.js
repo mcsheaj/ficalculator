@@ -1,5 +1,6 @@
-var models = angular.module('fic-model', []);
-var app = angular.module('fi-calculator', ['fic-model']);
+var models = angular.module('fic-models', []);
+var services = angular.module('fic-services', []);
+var app = angular.module('fi-calculator', ['fic-models', 'fic-services']);
 
 app.config([
 
@@ -12,11 +13,13 @@ app.config([
             Parse.initialize("5rjxuGJ24hcpW6nkiZLdYksWHv6w5UjqNIMtyEBP", "7iydBqyMAUBkOwRNryLxtxrqLjegDRHnhBSUsJ7m");
         }
 
-        Parse.FacebookUtils.init({
-            appId: location.host === 'localhost' ? "322187807961257" : "322176421295729",
-            cookie: true, // enable cookies to allow the server to access
-            // the session
-            xfbml: true, // parse social plugins on this page
-            version: 'v2.1' // use version 2.1
-        });
+        if (!!window.FB) {
+            Parse.FacebookUtils.init({
+                appId: location.host === 'localhost' ? "322187807961257" : "322176421295729",
+                cookie: true, // enable cookies to allow the server to access
+                // the session
+                xfbml: true, // parse social plugins on this page
+                version: 'v2.1' // use version 2.1
+            });
+        }
 }]);

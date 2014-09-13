@@ -1,4 +1,4 @@
-app.factory('ficSettings', ['$q',
+services.factory('ficSettings', ['$q',
     function ($q) {
         'use strict';
 
