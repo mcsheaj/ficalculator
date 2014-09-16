@@ -36,14 +36,16 @@ services.factory('ficSettings', ['$q',
                     } else {
                         query.equalTo('userId', userId);
                         query.find().then(function (current_settings) {
-                            o = current_settings[0]
-                            cache[userId] = o;
-                            deferred.resolve(o.toJSON() || defaults);
-                        }, function () {
-                            o = new FIData(defaults);
-                            o.set('userId', userId);
-                            cache[userId] = o;
-                            deferred.resolve(defaults);
+                            if (current_settings.length > 0) {
+                                o = current_settings[0];
+                                cache[userId] = o;
+                                deferred.resolve(o.toJSON() || defaults);
+                            } else {
+                                o = new FIData(defaults);
+                                o.set('userId', userId);
+                                cache[userId] = o;
+                                deferred.resolve(defaults);
+                            }
                         });
                     }
                 }
