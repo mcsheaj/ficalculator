@@ -6,6 +6,9 @@
 .form-horizontal .has-feedback .form-control-feedback.has-addon {
     right: 52px;
 }
+.has-feedback .form-control {
+    padding-right: 25px;
+}
 .help-context {
     display: none;
     position: absolute;
@@ -13,14 +16,17 @@
     opacity: 0.8;
 }
 @media(max-width: 1200px) {
-    .fic-perspective {} .fic-page {
-/*
-        position: absolute;
-        visibility: hidden;
-        width: 100%;
+    .fic-page-collection{
+        width:100%;
+        overflow-x: scroll;
+    }
+    .fic-page-container {
+        width: 300%;
+    }
+    .fic-page {
+        width: 33%;
+        float: left;
         margin: 0;
-        left: -500px;
-*/
     }
     .fic-page-current {
         visibility: visible;
