@@ -6,9 +6,9 @@ models.factory('ficPeriods', [
         function FICPeriods(settings, range) {
             this._age = settings.age;
             this._networth = settings.networth;
-            this._savings = settings.savings;
+            this._savings = toAnnual(settings.savings, settings.savings_rate);
             this._withdrawal_rate = settings.withdrawal_rate;
-            this._goal = settings.goal;
+            this._goal = toAnnual(settings.goal, settings.goal_rate);
             this._inflation = settings.inflation;
             this._ror = settings.ror;
 
@@ -26,7 +26,7 @@ models.factory('ficPeriods', [
             this.periods = [];
 
             for (var i = 1; i <= this._range; i++) {
-                current_networth = (current_networth + current_savings * 12) * current_ror;
+                current_networth = (current_networth + current_savings) * current_ror;
                 current_savings *= current_inflation;
                 current_goal *= current_inflation;
 
@@ -40,6 +40,9 @@ models.factory('ficPeriods', [
             }
         };
 
+        function toAnnual(amount, from_rate) {
+            return parseInt(from_rate) === 2 ? amount : amount * 12;
+        }
 
         function toPercentage(value) {
             return 1 + (value / 100);
