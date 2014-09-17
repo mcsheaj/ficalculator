@@ -56,5 +56,5 @@
     "nonstandard"   : false,    // Widely adopted globals (escape, unescape, etc)
 
     // Custom Globals
-    "predef"       : ["angular", "$", "FB", "Parse", "app", "models", "services"]
+    "predef"       : ["angular", "$", "FB", "Parse", "Chart", "app", "models", "services"]
 }

@@ -23,27 +23,31 @@ services.factory('ficSettings', ['$q',
                 var query,
                     deferred = $q.defer(),
                     settings,
-                    o;
+                    current_data = {};
 
                 if (userId === 'anonymous') {
                     settings = JSON.parse(localStorage.getItem('fic-settings')) || {};
-                    deferred.resolve(settings[userId] || defaults);
+                    angular.extend(current_data, settings[userId] || {}, defaults);
+
+                    deferred.resolve(current_data);
                 } else {
                     query = new Parse.Query(FIData);
                     if (cache[userId]) {
-                        o = cache[userId];
-                        deferred.resolve(o.toJSON());
+                        current_data = cache[userId];
+
+                        deferred.resolve(current_data.toJSON());
                     } else {
                         query.equalTo('userId', userId);
                         query.find().then(function (current_settings) {
                             if (current_settings.length > 0) {
-                                o = current_settings[0];
-                                cache[userId] = o;
-                                deferred.resolve(o.toJSON() || defaults);
+                                current_data = current_settings[0];
+                                cache[userId] = current_data;
+                                deferred.resolve(current_data.toJSON() || defaults);
                             } else {
-                                o = new FIData(defaults);
-                                o.set('userId', userId);
-                                cache[userId] = o;
+                                current_data = new FIData(defaults);
+                                current_data.set('userId', userId);
+                                cache[userId] = current_data;
+
                                 deferred.resolve(defaults);
                             }
                         });
@@ -55,7 +59,7 @@ services.factory('ficSettings', ['$q',
 
             setSettings: function (userId, settings) {
                 var deferred = $q.defer(),
-                    o;
+                    current_data;
 
                 if (userId === 'anonymous') {
                     var current_settings = JSON.parse(localStorage.getItem('fic-settings')) || {};
@@ -66,8 +70,8 @@ services.factory('ficSettings', ['$q',
                     return deferred.promise;
                 } else {
                     return SettingsService.getSettings(userId).then(function () {
-                        o = cache[userId];
-                        return o.save(settings);
+                        current_data = cache[userId];
+                        return current_data.save(settings);
                     });
                 }
             },

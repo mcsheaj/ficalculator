@@ -16,31 +16,37 @@
     opacity: 0.8;
 }
 @media(max-width: 1200px) {
+    body {
+        overflow: hidden;
+    }
+    .control-label {
+        display: block;
+    }
     .fic-page-collection{
         width:100%;
-        overflow-x: scroll;
+        overflow-x: hidden;
     }
     .fic-page-container {
         width: 300%;
+    }
+    .fic-page-container.fic-page-current-1 {
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+        margin-left: 0;
+    }
+    .fic-page-container.fic-page-current-2 {
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+        margin-left: -100%;
+    }
+    .fic-page-container.fic-page-current-3 {
+        transition-property: margin-left;
+        transition-duration: 0.5s;
+        margin-left: -200%;
     }
     .fic-page {
         width: 33%;
         float: left;
         margin: 0;
-    }
-    .fic-page-current {
-        visibility: visible;
-        left: 0;
-    }
-    /* scale and fade */
-    .fic-page-transition-out {
-        transition-property: left;
-        transition-duration: 0.5s;
-        left: -500px;
-    }
-    .fic-page-transition-in {
-        transition-property: left;
-        transition-duration: 0.5s;
-        left: 0;
     }
 }

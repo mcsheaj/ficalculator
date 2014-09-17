@@ -6,6 +6,7 @@ app.controller('ficChart', ['$scope', 'ficService', 'ficChartService',
 		var fiChart = new Chart(ctx);
 
         Chart.defaults.global.responsive = true;
+        Chart.defaults.global.scaleLabel = "<%=fic.toCurrency(value)%>";
 
 		$scope.plot = function (ficData) {
 			var chartData = ficChartService.toChartModel(ficData);
