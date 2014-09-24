@@ -2,6 +2,13 @@
    Author's custom styles
    ========================================================================== */
 
+html {
+    font-size: 14px;
+}
+body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
 .has-addon,
 .form-horizontal .has-feedback .form-control-feedback.has-addon {
     right: 52px;
@@ -16,14 +23,13 @@
     opacity: 0.8;
 }
 @media(max-width: 1200px) {
-    body {
-        overflow: hidden;
+    html {
+        font-size: 12px;
     }
     .control-label {
         display: block;
     }
-    .fic-page-collection{
-        width:100%;
+    .fic-page-collection {
         overflow-x: hidden;
     }
     .fic-page-container {
@@ -45,8 +51,7 @@
         margin-left: -200%;
     }
     .fic-page {
-        width: 33%;
+        width: 33.333%;
         float: left;
-        margin: 0;
     }
 }

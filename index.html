@@ -9,12 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <style>
-        body {
-            padding-top: 70px;
-            padding-bottom: 20px;
-        }
-    </style>
     <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/fontawesome/font-awesome.css">
@@ -48,7 +42,7 @@
 
         <div class="fic-page-collection">
             <div class="row fic-page-container  fic-page-current-1">
-                <div class="control-label col-lg-5 form-horizontal">
+                <div class="col-lg-5 form-horizontal">
                     <div class="row fic-page fic-page-1">
                         <div class="col-lg-12">
                             <form name="ficForm" role="form" data-ng-submit="calculate()">
@@ -58,7 +52,7 @@
                                 <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.age.$valid, 'has-error': ficForm.age.$invalid}">
                                     <label class="control-label col-lg-4">Age</label>
                                     <div class="col-lg-4">
-                                        <input type="number" name="age" autofocus="" data-ng-model="settings.age" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" max="120" step="1" required="true" class="form-control" />
+                                        <input type="number" name="age" autofocus="" data-ng-model="settings.age" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="120" step="1" required="true" class="form-control" />
                                         <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.age.$valid, 'glyphicon-warning-sign': ficForm.age.$invalid}"></span>
                                     </div>
                                 </div>
@@ -71,7 +65,7 @@
                                     <div class="col-lg-8">
                                         <div class="input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="number" name="networth" data-ng-model="settings.networth" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                                            <input fic-type="currency" name="networth" data-ng-model="settings.networth" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                                         </div>
                                         <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.networth.$valid, 'glyphicon-warning-sign': ficForm.networth.$invalid}"></span>
                                     </div>
@@ -82,7 +76,7 @@
                                     <div class="col-lg-4 col-xs-6">
                                         <div class="input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="number" name="savings" data-ng-model="settings.savings" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                                            <input fic-type="currency" name="savings" data-ng-model="settings.savings" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                                         </div>
                                         <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.savings.$valid, 'glyphicon-warning-sign': ficForm.savings.$invalid}"></span>
                                     </div>
@@ -102,7 +96,7 @@
                                     <div class="col-lg-4 col-xs-6">
                                         <div class="input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input type="number" name="goal" data-ng-model="settings.goal" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                                            <input fic-type="number" name="goal" data-ng-model="settings.goal" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
                                         </div>
                                         <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.goal.$valid, 'glyphicon-warning-sign': ficForm.goal.$invalid}"></span>
                                     </div>
@@ -123,7 +117,7 @@
                                     <label class="control-label col-lg-4">Inflation</label>
                                     <div class="col-lg-5">
                                         <div class="input-group">
-                                            <input type="number" name="inflation" data-ng-model="settings.inflation" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
+                                            <input type="number" name="inflation" data-ng-model="settings.inflation" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
                                             <span class="input-group-addon">%</span>
                                         </div>
                                         <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.inflation.$valid, 'glyphicon-warning-sign': ficForm.inflation.$invalid}"></span>
@@ -134,7 +128,7 @@
                                     <label class="control-label col-lg-4">Rate of return</label>
                                     <div class="col-lg-5">
                                         <div class="input-group">
-                                            <input type="number" name="ror" data-ng-model="settings.ror" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
+                                            <input type="number" name="ror" data-ng-model="settings.ror" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
                                             <span class="input-group-addon">%</span>
                                         </div>
                                         <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.ror.$valid, 'glyphicon-warning-sign': ficForm.ror.$invalid}"></span>
@@ -152,7 +146,7 @@
                                     </label>
                                     <div class="col-lg-4">
                                         <div class="input-group">
-                                            <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-model-options="{ debounce:200 }" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
+                                            <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
                                             <span class="input-group-addon">%</span>
                                         </div>
                                         <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.withdrawal.$valid, 'glyphicon-warning-sign': ficForm.withdrawal.$invalid}"></span>
@@ -243,7 +237,7 @@
     <script src="js/service/ficSettings.js"></script>
     <script src="js/service/ficUserService.js"></script>
     <script src="js/service/ficChartService.js"></script>
-    <script src="js/directives/ficCurrencyInput.js"></script>
+    <script src="js/directives/ficType.js"></script>
 </body>
 
 </html>
