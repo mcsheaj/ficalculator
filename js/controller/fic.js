@@ -35,7 +35,7 @@ app.controller('ficController', ['$scope', 'ficService', 'ficSettings', 'ficUser
         $scope.currentUserId = userService.getUserId();
 
         $scope.transition = function (e) {
-            if (e.keyCode === 39) {
+             if (e.keyCode === 39) {
                 $scope.transitionLeft();
             } else if (e.keyCode === 37) {
                 $scope.transitionRight();

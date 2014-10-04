@@ -7,7 +7,7 @@ module.exports = function (grunt) {
             bootstrap: {
                 src: 'css/bootstrap/less/bootstrap.less',
                 dest: 'css/bootstrap/bootstrap.css'
-            }
+            },
         }
     });
 

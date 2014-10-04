@@ -16,11 +16,16 @@ body {
 .has-feedback .form-control {
     padding-right: 28px;
 }
-.help-context {
+.fic-help-content {
     display: none;
-    position: absolute;
-    z-index: 3;
-    opacity: 0.8;
+}
+.fa:hover > .fic-help-content, .fa:focus > .fic-help-content {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: black;
+    width: 100%;
 }
 @media(max-width: 1200px) {
     html {

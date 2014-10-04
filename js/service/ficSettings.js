@@ -27,7 +27,7 @@ services.factory('ficSettings', ['$q',
 
                 if (userId === 'anonymous') {
                     settings = JSON.parse(localStorage.getItem('fic-settings')) || {};
-                    angular.extend(current_data, settings[userId] || {}, defaults);
+                    angular.extend(current_data, defaults, settings[userId] || {});
 
                     deferred.resolve(current_data);
                 } else {

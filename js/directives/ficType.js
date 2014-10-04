@@ -23,6 +23,7 @@ app.directive('ficType', ['$filter',
 
                         element.val(parsed);
                         element.attr('type', 'number');
+                        element.focus();
                     };
                 }
 
