@@ -27,6 +27,9 @@ body {
     background: black;
     width: 100%;
 }
+#fichart {
+    width: 100% !important; //Hack for firefox
+}
 @media(max-width: 1200px) {
     html {
         font-size: 12px;

@@ -8,7 +8,7 @@ app.directive('ficType', ['$filter',
             scope: '=',
             link: function ($scope, element, attrs, ngModel) {
 
-                function fromCurrency(text) {
+                function toNumber(text) {
                     if (text) {
                         return parseInt(text.replace(/\,|\$/g, ''));
                     } else {
@@ -16,14 +16,14 @@ app.directive('ficType', ['$filter',
                     }
                 }
 
-                function inputFromCurrency(element) {
+                function inputToNumber(element) {
                     return function () {
                         var value = element.val(),
-                            parsed = fromCurrency(value);
+                            parsed = toNumber(value);
 
                         element.val(parsed);
-                        element.attr('type', 'number');
-                        element.focus();
+                        element.attr('pattern', '[0-9]*');
+                        //element.attr('type', 'number');
                     };
                 }
 
@@ -40,13 +40,14 @@ app.directive('ficType', ['$filter',
                         var value = element.val(),
                             parsed = toCurrency(value);
 
-                        element.attr('type', 'text');
+                        //element.attr('type', 'text');
+                        element.removeAttr('pattern');
                         element.val(parsed);
                     };
                 }
 
                 element.focus(function () {
-                    $scope.$apply(inputFromCurrency(element));
+                    $scope.$apply(inputToNumber(element));
                     unwatch();
                 });
 
@@ -58,7 +59,7 @@ app.directive('ficType', ['$filter',
                     return ngModel.$modelValue;
                 }, inputToCurrency(element));
 
-                ngModel.$parsers.push(fromCurrency);
+                ngModel.$parsers.push(toNumber);
             }
         };
 }]);
