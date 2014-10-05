@@ -3,7 +3,6 @@ app.controller('ficController', ['$scope', 'ficService', 'ficSettings', 'ficUser
         'use strict';
 
         var configs = {
-            current_page: 1,
             max_page: 3,
         };
 
@@ -43,12 +42,27 @@ app.controller('ficController', ['$scope', 'ficService', 'ficSettings', 'ficUser
         };
 
         $scope.transitionLeft = function () {
-            navigatePage(configs.current_page + 1);
+            $scope.transitionPage($scope.current_page + 1);
         };
 
         $scope.transitionRight = function () {
-            navigatePage(configs.current_page - 1);
+            $scope.transitionPage($scope.current_page - 1);
         };
+
+        $scope.transitionPage = function(page_number) {
+            var $fic_container;
+            if (page_number >= 1 && page_number <= configs.max_page) {
+                $fic_container = $('.fic-page-container');
+                if ($fic_container.length > 0) {
+                    $fic_container
+                        .removeClass('fic-page-current-' + $scope.current_page)
+                        .addClass('fic-page-current-' + page_number);
+                    $scope.current_page = page_number;
+                }
+            }
+        };
+
+        $scope.current_page = 1;
 
         function calculate() {
             ficService.calculate($scope.settings);
@@ -67,18 +81,5 @@ app.controller('ficController', ['$scope', 'ficService', 'ficSettings', 'ficUser
 
                     calculate();
                 });
-        }
-
-        function navigatePage(page_number) {
-            var $fic_container;
-            if (page_number >= 1 && page_number <= configs.max_page) {
-                $fic_container = $('.fic-page-container');
-                if ($fic_container.length > 0) {
-                    $fic_container
-                        .removeClass('fic-page-current-' + configs.current_page)
-                        .addClass('fic-page-current-' + page_number);
-                    configs.current_page = page_number;
-                }
-            }
         }
 }]);

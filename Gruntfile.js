@@ -1,9 +1,13 @@
 module.exports = function (grunt) {
+    'use strict';
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         less: {
+            options: {
+                sourceMap: true,
+            },
             bootstrap: {
                 src: 'css/bootstrap/less/bootstrap.less',
                 dest: 'css/bootstrap/bootstrap.css'

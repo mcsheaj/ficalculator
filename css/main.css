@@ -6,8 +6,7 @@ html {
     font-size: 14px;
 }
 body {
-    padding-top: 70px;
-    padding-bottom: 20px;
+    padding-top: 50px;
 }
 .has-addon,
 .form-horizontal .has-feedback .form-control-feedback.has-addon {
@@ -19,7 +18,8 @@ body {
 .fic-help-content {
     display: none;
 }
-.fa:hover > .fic-help-content, .fa:focus > .fic-help-content {
+.fa:hover > .fic-help-content,
+.fa:focus > .fic-help-content {
     display: block;
     position: fixed;
     bottom: 0;
@@ -37,14 +37,22 @@ body {
     html {
         font-size: 12px;
     }
+    body {
+        padding-bottom: 50px;
+    }
     .control-label {
         display: block;
     }
     .fic-page-collection {
         overflow-x: hidden;
+        padding: 0;
     }
     .fic-page-container {
         width: 300%;
+        margin: 0;
+    }
+    .fic-page-container >[class^="col-"] {
+        padding: 0;
     }
     .fic-page-container.fic-page-current-1 {
         transition-property: margin-left;
@@ -65,5 +73,6 @@ body {
         width: 33.333%;
         float: left;
         margin: 0;
+        padding: 0 15px;
     }
 }
