@@ -1,10 +1,10 @@
-services.factory('ficSettings', ['$q',
+services.factory('service/setting', ['$q',
     function ($q) {
         'use strict';
 
         var defaults = {
-                'age': 28,
-                'networth': 25000,
+                'age': 25,
+                'networth': 30000,
                 'savings': 1000,
                 'savings_rate': 1,
                 'withdrawal_rate': 4,
@@ -12,6 +12,7 @@ services.factory('ficSettings', ['$q',
                 'goal_rate': 2,
                 'inflation': 3,
                 'ror': 8,
+                'range': 25,
             },
             cache = {};
 

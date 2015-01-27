@@ -1,4 +1,4 @@
-services.factory('ficUserService', ['$q',
+services.factory('service/user', ['$q',
     function ($q) {
         'use strict';
 

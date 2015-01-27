@@ -1,5 +1,5 @@
-app.directive('ficType', ['$filter',
-    function ($filter) {
+app.directive('ficType', ['$filter', '$timeout',
+    function ($filter, $timeout) {
         'use strict';
 
         return {
@@ -22,7 +22,7 @@ app.directive('ficType', ['$filter',
                             parsed = toNumber(value);
 
                         element.val(parsed);
-                        element.attr('pattern', '[0-9]*');
+                        //element.attr('pattern', '[0-9]+([\.|,][0-9]+)?');
                         //element.attr('type', 'number');
                     };
                 }
@@ -40,8 +40,8 @@ app.directive('ficType', ['$filter',
                         var value = element.val(),
                             parsed = toCurrency(value);
 
+                        //element.removeAttr('pattern');
                         //element.attr('type', 'text');
-                        element.removeAttr('pattern');
                         element.val(parsed);
                     };
                 }
@@ -62,4 +62,4 @@ app.directive('ficType', ['$filter',
                 ngModel.$parsers.push(toNumber);
             }
         };
-}]);
+    }]);

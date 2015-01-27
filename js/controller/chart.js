@@ -1,5 +1,5 @@
-app.controller('ficChart', ['$scope', 'ficService', 'ficChartService',
-    function ($scope, ficService, ficChartService) {
+app.controller('controller/chart', ['$scope', 'service/calculator', 'service/chart',
+    function ($scope, calculatorService, chartService) {
         'use strict';
 
 		var ctx = $("#fichart").get(0).getContext("2d");
@@ -7,18 +7,17 @@ app.controller('ficChart', ['$scope', 'ficService', 'ficChartService',
 
         Chart.defaults.global.responsive = true;
         Chart.defaults.global.scaleLabel = "<%=fic.toCurrency(value)%>";
-		Chart.defaults.global.maintainAspectRatio = false;
 
-		$scope.plot = function (ficData) {
-			var chartData = ficChartService.toChartModel(ficData);
+		$scope.plot = function (periods) {
+			var chartData = chartService.toChartModel(periods);
 			if (chartData){
 				fiChart.Line(chartData);
 			}
 		};
 
 		$scope.$on('fic-recalculate', function(){
-			$scope.plot(ficService.FIC);
+			$scope.plot(calculatorService.periods);
 		});
 
-		$scope.plot(ficService.FIC);
+		$scope.plot(calculatorService.periods);
 }]);

@@ -1,10 +1,10 @@
-services.factory('ficChartService', [
+services.factory('service/chart', [
 
     function () {
         'use strict';
 
         var service = {
-            toChartModel: function (ficData) {
+            toChartModel: function (periods) {
                 var chartData = {
                     'labels': [],
                     'datasets': [
@@ -25,12 +25,12 @@ services.factory('ficChartService', [
                             data: []
                         },
                     ]
-                };
-                var period;
+                },
+                    period;
 
-                if (ficData && ficData.periods) {
-                    for (var i = 0; i < ficData.periods.length; i = i + 2) {
-                        period = ficData.periods[i];
+                if (periods) {
+                    for (var i = 0; i < periods.length; i = i + 2) {
+                        period = periods[i];
                         chartData.labels.push(period.age);
                         chartData.datasets[0].data.push(parseFloat(period.goal).toFixed(2));
                         chartData.datasets[1].data.push(parseInt(period.withdrawal_amount));
