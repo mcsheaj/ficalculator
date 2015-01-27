@@ -1,4 +1,4 @@
-services.factory('ficService', ['$q', 'ficUserService', 'ficPeriods',
+services.factory('ficService', ['$q', 'ficUserService', 'ficPeriod',
     function ($q, userservice, FICPeriods) {
 		'use strict';
 		var ficService = {};

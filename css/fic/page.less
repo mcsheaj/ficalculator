@@ -1,0 +1,37 @@
+.fic-page-transition(@left){
+	transition-property:margin-left;
+	transition-duration:0.5s;
+	margin-left:@left;
+}
+
+@media(max-width: 1200px) {
+	.fic-page-collection {
+		overflow-x: hidden;
+		padding: 0;
+		height: 100%;
+	}
+	.fic-page-container {
+		width: 300%;
+		margin: 0;
+		height: 100%;
+		overflow-y: scroll;
+	}
+	.fic-page-container >[class^="col-"] {
+		padding: 0;
+	}
+	.fic-page-container.fic-page-current-1 {
+		.fic-page-transition(0);
+	}
+	.fic-page-container.fic-page-current-2 {
+		.fic-page-transition(-100%);
+	}
+	.fic-page-container.fic-page-current-3 {
+		.fic-page-transition(-200%);
+	}
+	.fic-page {
+		width: 33.333%;
+		float: left;
+		margin: 0;
+		padding: 0 15px;
+	}
+}

@@ -1,0 +1,17 @@
+.fic-help-content {
+	display: none;
+}
+
+.fa:hover, .fa:focus {
+	> .fic-help-content {
+		display: block;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		background: black;
+		color: white;
+		z-index: 3;
+		padding: 15px;
+		width: 100%;
+	}
+}

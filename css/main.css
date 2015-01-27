@@ -1,78 +1,73 @@
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
+#fichart {
+  width: 100% !important;
+  height: 500px !important;
+}
 html {
-    font-size: 14px;
+  font-size: 14px;
+  height: 100%;
 }
 body {
-    padding-top: 50px;
+  padding-top: 50px;
+  height: 100%;
 }
-.has-addon,
-.form-horizontal .has-feedback .form-control-feedback.has-addon {
-    right: 52px;
-}
-.has-feedback .form-control {
-    padding-right: 28px;
+@media (max-width: 1200px) {
+  html {
+    font-size: 12px;
+  }
+  body {
+    padding-bottom: 50px;
+  }
 }
 .fic-help-content {
-    display: none;
+  display: none;
 }
 .fa:hover > .fic-help-content,
 .fa:focus > .fic-help-content {
-    display: block;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: black;
-    color: white;
-    z-index: 3;
-    padding: 15px;
-    width: 100%;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: black;
+  color: white;
+  z-index: 3;
+  padding: 15px;
+  width: 100%;
 }
-#fichart {
-    width: 100% !important; //Hack for firefox
+@media (max-width: 1200px) {
+  .fic-page-collection {
+    overflow-x: hidden;
+    padding: 0;
+    height: 100%;
+  }
+  .fic-page-container {
+    width: 300%;
+    margin: 0;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .fic-page-container > [class^="col-"] {
+    padding: 0;
+  }
+  .fic-page-container.fic-page-current-1 {
+    transition-property: margin-left;
+    transition-duration: 0.5s;
+    margin-left: 0;
+  }
+  .fic-page-container.fic-page-current-2 {
+    transition-property: margin-left;
+    transition-duration: 0.5s;
+    margin-left: -100%;
+  }
+  .fic-page-container.fic-page-current-3 {
+    transition-property: margin-left;
+    transition-duration: 0.5s;
+    margin-left: -200%;
+  }
+  .fic-page {
+    width: 33.333%;
+    float: left;
+    margin: 0;
+    padding: 0 15px;
+  }
 }
-@media(max-width: 1200px) {
-    html {
-        font-size: 12px;
-    }
-    body {
-        padding-bottom: 50px;
-    }
-    .control-label {
-        display: block;
-    }
-    .fic-page-collection {
-        overflow-x: hidden;
-        padding: 0;
-    }
-    .fic-page-container {
-        width: 300%;
-        margin: 0;
-    }
-    .fic-page-container >[class^="col-"] {
-        padding: 0;
-    }
-    .fic-page-container.fic-page-current-1 {
-        transition-property: margin-left;
-        transition-duration: 0.5s;
-        margin-left: 0;
-    }
-    .fic-page-container.fic-page-current-2 {
-        transition-property: margin-left;
-        transition-duration: 0.5s;
-        margin-left: -100%;
-    }
-    .fic-page-container.fic-page-current-3 {
-        transition-property: margin-left;
-        transition-duration: 0.5s;
-        margin-left: -200%;
-    }
-    .fic-page {
-        width: 33.333%;
-        float: left;
-        margin: 0;
-        padding: 0 15px;
-    }
-}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy9maWMvY2hhcnQubGVzcyIsImNzcy9maWMvZ2xvYmFsLmxlc3MiLCJjc3MvZmljL2hlbHAtY29udGVudC5sZXNzIiwiY3NzL2ZpYy9wYWdlLmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxzQkFBQTtFQUNILHdCQUFBOztBQ0ZEO0VBQ0ksZUFBQTtFQUNILFlBQUE7O0FBRUQ7RUFDSSxpQkFBQTtFQUNILFlBQUE7O0FBVUEsUUFQeUI7RUFDdEI7SUFDSSxlQUFBOztFQUVKO0lBQ0ksb0JBQUE7OztBQ2RSO0VBQ0MsYUFBQTs7QUFHRCxHQUFHLE1BQ0Y7QUFEVSxHQUFHLE1BQ2I7RUFDQyxjQUFBO0VBQ0EsZUFBQTtFQUNBLFNBQUE7RUFDQSxPQUFBO0VBQ0EsaUJBQUE7RUFDQSxZQUFBO0VBQ0EsVUFBQTtFQUNBLGFBQUE7RUFDQSxXQUFBOztBQ3NCRCxRQTlCeUI7RUFDekI7SUFDQyxrQkFBQTtJQUNBLFVBQUE7SUFDQSxZQUFBOztFQUVEO0lBQ0MsV0FBQTtJQUNBLFNBQUE7SUFDQSxZQUFBO0lBQ0Esa0JBQUE7O0VBRUQsbUJBQW9CO0lBQ25CLFVBQUE7O0VBRUQsbUJBQW1CO0lBcEJuQixnQ0FBQTtJQUNBLHlCQUFBO0lBQ0EsY0FBQTs7RUFxQkEsbUJBQW1CO0lBdkJuQixnQ0FBQTtJQUNBLHlCQUFBO0lBQ0Esa0JBQUE7O0VBd0JBLG1CQUFtQjtJQTFCbkIsZ0NBQUE7SUFDQSx5QkFBQTtJQUNBLGtCQUFBOztFQTJCQTtJQUNDLGNBQUE7SUFDQSxXQUFBO0lBQ0EsU0FBQTtJQUNBLGVBQUEifQ== */

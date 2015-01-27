@@ -4,8 +4,8 @@ services.factory('ficSettings', ['$q',
 
         var defaults = {
                 'age': 28,
-                'networth': 100000,
-                'savings': 2000,
+                'networth': 25000,
+                'savings': 1000,
                 'savings_rate': 1,
                 'withdrawal_rate': 4,
                 'goal': 50000,
