@@ -1,5 +1,5 @@
-app.directive('ficType', ['$filter', '$timeout',
-    function ($filter, $timeout) {
+app.directive('ficType', ['$filter',
+    function ($filter) {
         'use strict';
 
         return {

@@ -1,5 +1,5 @@
-services.factory('service/calculator', ['service/user', 'model/period',
-    function (userService, Period) {
+services.factory('service/calculator', [
+    function () {
         'use strict';
 
         function toPercentage(num) {

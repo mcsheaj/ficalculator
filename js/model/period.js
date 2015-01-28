@@ -3,7 +3,7 @@ models.factory('model/period', [
     function () {
         'use strict';
 
-        function Period(settings, range) {
+        function Period(settings) {
             angular.extend(this, settings);
         }
 

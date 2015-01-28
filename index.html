@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/fontawesome/font-awesome.css">
 </head>
 
-<body data-ng-app="fi-calculator" data-ng-controller="controller/calculator">
+<body data-ng-app="fi-calculator">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="container-fluid fic-page-collection" data-ng-controller="controller/navigation">
+    <div class="container-fluid fic-page-collection" data-ng-controller="controller/navigation" data-ng-keyup="transition($event)" data-ng-swipe-left="transitionLeft()" data-ng-swipe-right="transitionRight()">
         <nav class="navbar navbar-default navbar-fixed-bottom hidden-lg" role="navigation">
             <ul class="nav navbar-nav">
                 <li data-ng-class="{active: current_page == 1}"><a href="#" data-ng-click="transitionPage(1)">Data</a>
@@ -41,7 +41,7 @@
                 </li>
             </ul>
         </nav>
-        <div class="row fic-page-container" data-ng-keyup="transition($event)" data-ng-swipe-left="transitionLeft()" data-ng-swipe-right="transitionRight()">
+        <div class="row fic-page-container" data-ng-controller="controller/calculator">
             <div class="col-lg-5">
                 <div class="form-horizontal fic-page fic-page-1">
                     <form name="ficForm" role="form" data-ng-submit="calculate()">
