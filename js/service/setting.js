@@ -43,6 +43,7 @@ services.factory('service/setting', ['$q',
                             if (current_settings.length > 0) {
                                 current_data = current_settings[0];
                                 cache[userId] = current_data;
+
                                 deferred.resolve(angular.extend({}, defaults, current_data.toJSON()));
                             } else {
                                 current_data = new FIData(defaults);

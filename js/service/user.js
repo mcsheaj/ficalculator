@@ -6,7 +6,7 @@ services.factory('service/user', ['$q',
             getUserId: function () {
                 var currentUser = Parse.User.current();
 
-                if (currentUser){
+                if (currentUser) {
                     return currentUser.id;
                 } else {
                     return 'anonymous';
@@ -16,14 +16,18 @@ services.factory('service/user', ['$q',
             login: function () {
                 var deferred = $q.defer();
 
-                Parse.FacebookUtils.logIn('public_profile,email', {
-                    success: function (user) {
-                        deferred.resolve(user);
-                    },
-                    error: function (user, error) {
-                        deferred.resolve(error);
-                    }
-                });
+                try {
+                    Parse.FacebookUtils.logIn('public_profile,email', {
+                        success: function (user) {
+                            deferred.resolve(user);
+                        },
+                        error: function (user, error) {
+                            deferred.resolve(error);
+                        }
+                    });
+                } catch (e) {
+                    deferred.resolve(e);
+                }
 
                 return deferred.promise;
             },

@@ -1,23 +1,36 @@
-app.controller('controller/chart', ['$scope', 'service/calculator', 'service/chart',
-    function ($scope, calculatorService, chartService) {
+app.controller('controller/chart', ['$scope', 'service/calculator', 'service/chart', 'service/navigation',
+    function ($scope, calculatorService, chartService, navigationService) {
         'use strict';
 
-		var ctx = $("#fichart").get(0).getContext("2d");
-		var fiChart = new Chart(ctx);
+        var ctx = $("#fichart").get(0).getContext("2d"),
+            fiChart = new Chart(ctx),
+            isDrawn = false;
 
         Chart.defaults.global.responsive = true;
         Chart.defaults.global.scaleLabel = "<%=fic.toCurrency(value)%>";
 
-		$scope.plot = function (periods) {
-			var chartData = chartService.toChartModel(periods);
-			if (chartData){
-				fiChart.Line(chartData);
-			}
-		};
+        $scope.plot = function (periods) {
+            var chartData = chartService.toChartModel(periods);
 
-		$scope.$on('fic-recalculate', function(){
-			$scope.plot(calculatorService.periods);
-		});
+            if (chartData) {
+                fiChart = new Chart(ctx);
+                fiChart.Line(chartData);
+            }
+        };
 
-		$scope.plot(calculatorService.periods);
+        $scope.$on('fic-recalculate', function () {
+            redraw();
+        });
+
+        $scope.$on('fic-navigate', function () {
+            if (!isDrawn && navigationService.page === 2) {
+                redraw();
+                isDrawn = true;
+            }
+        });
+
+        function redraw() {
+            $scope.plot(calculatorService.periods);
+        }
+
 }]);

@@ -29,7 +29,6 @@ module.exports = function (grunt) {
 		},
 	});
 
-	// Load the plugin that provides the "uglify" task.
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 

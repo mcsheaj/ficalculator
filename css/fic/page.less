@@ -1,37 +1,65 @@
-.fic-page-transition(@left){
-	transition-property:margin-left;
-	transition-duration:0.5s;
-	margin-left:@left;
+.fic-page-collection {
+    height: 100%;
+}
+
+.fic-page-container {
+    height: 100%;
+    &.fic-page-current-3 > .fic-page-3 {
+        transform: translateX(0);
+    }
+}
+
+.fic-page {
+    float: left;
+    height: 100%;
+    background-color: white;
+    padding: 50px 10px 60px;
+}
+
+.fic-page-1 {
+    width: 40%;
+}
+
+.fic-page-2 {
+    width: 60%;
+}
+
+.fic-page-3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: #aaa 0 0 20px;
+    width: 60%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform: translateX(100%);
+    overflow-y: auto;
 }
 
 @media(max-width: 1200px) {
-	.fic-page-collection {
-		overflow-x: hidden;
-		padding: 0;
-		height: 100%;
-	}
-	.fic-page-container {
-		width: 300%;
-		margin: 0;
-		height: 100%;
-		overflow-y: scroll;
-	}
-	.fic-page-container >[class^="col-"] {
-		padding: 0;
-	}
-	.fic-page-container.fic-page-current-1 {
-		.fic-page-transition(0);
-	}
-	.fic-page-container.fic-page-current-2 {
-		.fic-page-transition(-100%);
-	}
-	.fic-page-container.fic-page-current-3 {
-		.fic-page-transition(-200%);
-	}
-	.fic-page {
-		width: 33.333%;
-		float: left;
-		margin: 0;
-		padding: 0 15px;
-	}
+    .fic-page-collection {
+        overflow-x: hidden;
+        padding: 0;
+        height: 100%;
+    }
+    .fic-page-container {
+        width: 100%;
+        margin: 0;
+        overflow-y: auto;
+    }
+    .fic-page-current-1 .fic-page-1,
+    .fic-page-current-2 .fic-page-2,
+    .fic-page-current-3 .fic-page-3 {
+        transform: translateX(0);
+        opacity: 1;
+        overflow-y: auto;
+    }
+    .fic-page {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        transform: translateX(100%);
+        transition: transform 0.5s, opacity 1s;
+        opacity: 0;
+    }
 }

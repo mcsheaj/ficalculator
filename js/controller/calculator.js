@@ -4,17 +4,6 @@ app.controller('controller/calculator', ['$scope', 'service/calculator', 'servic
 
         $scope.settings = {};
 
-        loadSettings();
-
-        $scope.login = function () {
-            userService.login().then(loadSettings);
-        };
-
-        $scope.logout = function () {
-            userService.logout();
-            loadSettings();
-        };
-
         $scope.toggleHelp = function (event) {
             var name = event.currentTarget.attributes.getNamedItem("name").value;
             $('.help-context[data-for="' + name + '"]').toggle(event.type === 'focus');
@@ -36,7 +25,6 @@ app.controller('controller/calculator', ['$scope', 'service/calculator', 'servic
 
         function loadSettings() {
             var userId = userService.getUserId();
-            $scope.currentUserId = userId;
             settingsService.getSettings(userId)
                 .then(function (settings) {
                     if (settings) {
@@ -46,4 +34,6 @@ app.controller('controller/calculator', ['$scope', 'service/calculator', 'servic
                     calculate();
                 });
         }
+
+        $scope.$watch(userService.getUserId, loadSettings);
 }]);
