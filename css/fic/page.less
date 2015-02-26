@@ -44,14 +44,12 @@
     .fic-page-container {
         width: 100%;
         margin: 0;
-        overflow-y: auto;
     }
     .fic-page-current-1 .fic-page-1,
     .fic-page-current-2 .fic-page-2,
     .fic-page-current-3 .fic-page-3 {
         right: 0;
         opacity: 1;
-        overflow-y: auto;
     }
     .fic-page {
         width: 100%;
@@ -60,5 +58,10 @@
         right: 100%;
         transition: right 0.5s, opacity 1s;
         opacity: 0;
+    }
+    .fic-page-scroll {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
     }
 }

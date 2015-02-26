@@ -49,174 +49,179 @@
         </nav>
         <div class="fic-page-container fic-page-current-1" data-ng-controller="controller/calculator">
             <div class="form-horizontal fic-page fic-page-1 ng-cloak" data-ng-swipe-left="transitionPage(2)">
-                <form name="ficForm" role="form" data-ng-submit="calculate()">
-                    <h3>Current state</h3>
-                    <hr />
+                <div class="fic-page-scroll">
+                    <form name="ficForm" role="form" data-ng-submit="calculate()">
+                        <h3>Current state</h3>
+                        <hr />
 
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.age.$valid, 'has-error': ficForm.age.$invalid}">
-                        <label class="control-label col-lg-4">Age</label>
-                        <div class="col-lg-4">
-                            <input type="number" name="age" autofocus="autofocus" data-ng-model="settings.age" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="120" step="1" required="true" class="form-control" />
-                            <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.age.$valid, 'glyphicon-warning-sign': ficForm.age.$invalid}"></span>
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.age.$valid, 'has-error': ficForm.age.$invalid}">
+                            <label class="control-label col-lg-4">Age</label>
+                            <div class="col-lg-4">
+                                <input type="number" name="age" autofocus="autofocus" data-ng-model="settings.age" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="120" step="1" required="true" class="form-control" />
+                                <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.age.$valid, 'glyphicon-warning-sign': ficForm.age.$invalid}"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.networth.$valid, 'has-error': ficForm.networth.$invalid}">
-                        <label class="control-label col-lg-4">
-                            Your net worth
-                            <i class="fa fa-question-circle">
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.networth.$valid, 'has-error': ficForm.networth.$invalid}">
+                            <label class="control-label col-lg-4">
+                                Your net worth
+                                <i class="fa fa-question-circle">
                                             <div class="fic-help-content">
                                                 <h3 class="help-block">What would you be worth if you sold every liquid asset you have?</h3>
                                             </div>
                                         </i>
-                        </label>
-                        <div class="col-lg-8">
-                            <div class="input-group">
-                                <span class="input-group-addon">$</span>
-                                <input fic-type="currency" name="networth" data-ng-model="settings.networth" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                            </label>
+                            <div class="col-lg-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input fic-type="currency" name="networth" data-ng-model="settings.networth" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                                </div>
+                                <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.networth.$valid, 'glyphicon-warning-sign': ficForm.networth.$invalid}"></span>
                             </div>
-                            <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.networth.$valid, 'glyphicon-warning-sign': ficForm.networth.$invalid}"></span>
                         </div>
-                    </div>
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.savings.$valid, 'has-error': ficForm.savings.$invalid}">
-                        <label class="control-label col-lg-4">Savings rate</label>
-                        <div class="col-lg-4 col-xs-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">$</span>
-                                <input fic-type="currency" name="savings" data-ng-model="settings.savings" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.savings.$valid, 'has-error': ficForm.savings.$invalid}">
+                            <label class="control-label col-lg-4">Savings rate</label>
+                            <div class="col-lg-4 col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input fic-type="currency" name="savings" data-ng-model="settings.savings" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                                </div>
+                                <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.savings.$valid, 'glyphicon-warning-sign': ficForm.savings.$invalid}"></span>
                             </div>
-                            <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.savings.$valid, 'glyphicon-warning-sign': ficForm.savings.$invalid}"></span>
+                            <div class="col-lg-4 col-xs-6">
+                                <select class="form-control" data-ng-model="settings.savings_rate" data-ng-change="calculate()">
+                                    <option value="1">Month</option>
+                                    <option value=2>Year</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-lg-4 col-xs-6">
-                            <select class="form-control" data-ng-model="settings.savings_rate" data-ng-change="calculate()">
-                                <option value="1">Month</option>
-                                <option value=2>Year</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.goal.$valid, 'has-error': ficForm.goal.$invalid}">
-                        <label class="control-label col-lg-4">
-                            Goal
-                            <i class="fa fa-question-circle">
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.goal.$valid, 'has-error': ficForm.goal.$invalid}">
+                            <label class="control-label col-lg-4">
+                                Goal
+                                <i class="fa fa-question-circle">
                                             <div class="fic-help-content">
                                                 <h3 class="help-block">The amount you spend/will spend on day to day living</h3>
                                             </div>
                                         </i>
-                        </label>
-                        <div class="col-lg-4 col-xs-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">$</span>
-                                <input fic-type="number" name="goal" data-ng-model="settings.goal" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                            </label>
+                            <div class="col-lg-4 col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input fic-type="number" name="goal" data-ng-model="settings.goal" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" step="1" required="true" class="form-control" />
+                                </div>
+                                <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.goal.$valid, 'glyphicon-warning-sign': ficForm.goal.$invalid}"></span>
                             </div>
-                            <span class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': ficForm.goal.$valid, 'glyphicon-warning-sign': ficForm.goal.$invalid}"></span>
-                        </div>
 
-                        <div class="col-lg-4 col-xs-6">
-                            <select class="form-control" data-ng-model="settings.goal_rate" data-ng-change="calculate()">
-                                <option value="1">Month</option>
-                                <option value=2>Year</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <h3>Predictions</h3>
-                    <hr />
-
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.inflation.$valid, 'has-error': ficForm.inflation.$invalid}">
-                        <label class="control-label col-lg-4">Inflation</label>
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input type="number" name="inflation" data-ng-model="settings.inflation" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
-                                <span class="input-group-addon">%</span>
+                            <div class="col-lg-4 col-xs-6">
+                                <select class="form-control" data-ng-model="settings.goal_rate" data-ng-change="calculate()">
+                                    <option value="1">Month</option>
+                                    <option value=2>Year</option>
+                                </select>
                             </div>
-                            <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.inflation.$valid, 'glyphicon-warning-sign': ficForm.inflation.$invalid}"></span>
-                        </div>
-                    </div>
 
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.ror.$valid, 'has-error': ficForm.ror.$invalid}">
-                        <label class="control-label col-lg-4">Rate of return</label>
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input type="number" name="ror" data-ng-model="settings.ror" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
-                                <span class="input-group-addon">%</span>
+                        </div>
+
+                        <h3>Predictions</h3>
+                        <hr />
+
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.inflation.$valid, 'has-error': ficForm.inflation.$invalid}">
+                            <label class="control-label col-lg-4">Inflation</label>
+                            <div class="col-lg-5">
+                                <div class="input-group">
+                                    <input type="number" name="inflation" data-ng-model="settings.inflation" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                                <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.inflation.$valid, 'glyphicon-warning-sign': ficForm.inflation.$invalid}"></span>
                             </div>
-                            <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.ror.$valid, 'glyphicon-warning-sign': ficForm.ror.$invalid}"></span>
                         </div>
-                    </div>
 
-                    <h3>Advanced</h3>
-                    <hr />
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.ror.$valid, 'has-error': ficForm.ror.$invalid}">
+                            <label class="control-label col-lg-4">Rate of return</label>
+                            <div class="col-lg-5">
+                                <div class="input-group">
+                                    <input type="number" name="ror" data-ng-model="settings.ror" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="1" required="true" class="form-control" />
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                                <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.ror.$valid, 'glyphicon-warning-sign': ficForm.ror.$invalid}"></span>
+                            </div>
+                        </div>
+
+                        <h3>Advanced</h3>
+                        <hr />
 
 
-                    <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.withdrawal.$valid, 'has-error': ficForm.withdrawal.$invalid}">
-                        <label class="control-label col-lg-4">
-                            Withdrawal
-                            <i class="fa fa-question-circle">
+                        <div class="form-group has-feedback" data-ng-class="{'has-success': ficForm.withdrawal.$valid, 'has-error': ficForm.withdrawal.$invalid}">
+                            <label class="control-label col-lg-4">
+                                Withdrawal
+                                <i class="fa fa-question-circle">
                                             <div class="fic-help-content">
                                                 <h3 class="help-block">The rate at which you will be withdrawing your savings after FI</h3>
                                             </div>
                                         </i>
-                        </label>
-                        <div class="col-lg-4">
-                            <div class="input-group">
-                                <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
-                                <span class="input-group-addon">%</span>
+                            </label>
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <input type="number" name="withdrawal" data-ng-model="settings.withdrawal_rate" data-ng-model-options="{ debounce:400 }" data-ng-change="calculate()" min="0" max="100" step="0.01" required="true" class="form-control" />
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                                <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.withdrawal.$valid, 'glyphicon-warning-sign': ficForm.withdrawal.$invalid}"></span>
                             </div>
-                            <span class="glyphicon form-control-feedback has-addon" data-ng-class="{'glyphicon-ok': ficForm.withdrawal.$valid, 'glyphicon-warning-sign': ficForm.withdrawal.$invalid}"></span>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
 
             <div class="fic-page tab-pane active fic-page-2 ng-cloak" data-ng-swipe-right="transitionPage(1)" data-ng-swipe-left="transitionPage(3)" data-ng-controller="controller/chart">
-                <canvas id="fichart" style="width: 100% !important"></canvas>
+                <div class="fic-page-scroll">
+                    <canvas id="fichart" style="width: 100% !important"></canvas>
+                </div>
             </div>
 
             <div class="fic-page tab-pane fic-page-3 ng-cloak" data-ng-swipe-right="transitionPage(2)">
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Age
-                            </th>
-                            <th class="hidden-xs">
-                                Savings
-                            </th>
-                            <th>
-                                Net worth
-                            </th>
-                            <th>
-                                Goal
-                            </th>
-                            <th>
-                                Withdrawal
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-ng-repeat="period in periods" class="fic-row" data-ng-class="{success: (period.withdrawal_amount >= period.goal)}">
-                            <td>
-                                {{period.age | number}}
-                            </td>
-                            <td class="hidden-xs">
-                                {{period.savings | currency}}
-                            </td>
-                            <td>
-                                {{period.networth | currency}}
-                            </td>
-                            <td>
-                                {{period.goal | currency}}
-                            </td>
-                            <td>
-                                {{period.withdrawal_amount | currency}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="fic-page-scroll">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Age
+                                </th>
+                                <th class="hidden-xs">
+                                    Savings
+                                </th>
+                                <th>
+                                    Net worth
+                                </th>
+                                <th>
+                                    Goal
+                                </th>
+                                <th>
+                                    Withdrawal
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="period in periods" class="fic-row" data-ng-class="{success: (period.withdrawal_amount >= period.goal)}">
+                                <td>
+                                    {{period.age | number}}
+                                </td>
+                                <td class="hidden-xs">
+                                    {{period.savings | currency}}
+                                </td>
+                                <td>
+                                    {{period.networth | currency}}
+                                </td>
+                                <td>
+                                    {{period.goal | currency}}
+                                </td>
+                                <td>
+                                    {{period.withdrawal_amount | currency}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
